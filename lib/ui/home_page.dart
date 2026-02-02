@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 24),
                 _buildWelcomeSection(),
                 const SizedBox(height: 24),
-                _buildSeamlessRideCard(), // Height reduced here
+                _buildSeamlessRideCard(),
                 const SizedBox(height: 20),
                 _buildCouponSection(),
                 const SizedBox(height: 24),
@@ -358,15 +358,15 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildRideCard(dynamic ride) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 12), // Reduced from 14
+      padding: const EdgeInsets.all(14), // Reduced from 16
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(14), // Reduced from 16
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
+            blurRadius: 8, // Reduced from 10
             offset: const Offset(0, 2),
           ),
         ],
@@ -374,98 +374,98 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Icon container
+          // Icon container - REDUCED SIZE
           Container(
-            width: 48,
-            height: 48,
+            width: 42, 
+            height: 42, 
             decoration: BoxDecoration(
               color: const Color(0xFFE3F2FD),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(20), 
             ),
             child: Center(
               child: Image.asset(
                 'assets/images/Bike-Raide.png',
-                width: 28,
-                height: 28,
+                width: 24, 
+                height: 24, 
                 fit: BoxFit.contain,
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          // Content
+          const SizedBox(width: 10), 
+          
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Location row
+               
                 Row(
                   children: [
                     const Text(
                       'IIT Madras C....',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 13, 
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 6),
+                    const SizedBox(width: 4), 
                     const Icon(
                       Icons.arrow_forward,
-                      size: 14,
+                      size: 13, 
                       color: Color(0xFF999999),
                     ),
-                    const SizedBox(width: 6),
+                    const SizedBox(width: 4), 
                     const Text(
                       'Airports Authority ....',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 15, // Reduced from 14
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
-                // Date and time
+                const SizedBox(height: 4), // Reduced from 6
+                // Date and time - REDUCED FONT SIZE
                 const Text(
                   '23 Apr 2024 - 12:08pm',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 12, // Reduced from 12
                     color: Color(0xFF999999),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 2),
-                // Price
+                const SizedBox(height: 2), // Kept same
+                // Price - REDUCED FONT SIZE
                 const Text(
                   '₹ 190.0',
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 12, 
                     color: Color(0xFF999999),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 10),
-                // Status and button row
+                const SizedBox(height: 4), 
+                
                 Row(
                   children: [
-                    // Complete status
+                    
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 6,
-                          height: 6,
+                          width: 5, 
+                          height: 5, 
                           decoration: const BoxDecoration(
                             color: Color(0xFF4CAF50),
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 6),
+                        const SizedBox(width: 4), // Reduced from 6
                         const Text(
                           'Complete',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 13, // Reduced from 12
                             color: Color(0xFF4CAF50),
                             fontWeight: FontWeight.w600,
                           ),
@@ -473,18 +473,18 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     const Spacer(),
-                    // Book Again button
+                   
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFFF9500),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
+                          horizontal: 16, // Reduced from 20
+                          vertical: 8, // Reduced from 10
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(6), // Reduced from 8
                         ),
                         elevation: 0,
                         minimumSize: Size.zero,
@@ -492,7 +492,7 @@ class _HomePageState extends State<HomePage> {
                       child: const Text(
                         'Book Again',
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 12, // Reduced from 13
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.1,
                         ),
