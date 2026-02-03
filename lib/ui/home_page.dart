@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/ride_bloc.dart';
 import '../bloc/ride_state.dart';
 import '../bloc/ride_event.dart';
-import '../constants/app_colors.dart';
+import '../ui/widgets/menu_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _hasLoaded = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); 
 
   @override
   void initState() {
@@ -31,7 +32,9 @@ class _HomePageState extends State<HomePage> {
     });
 
     return Scaffold(
+      key: _scaffoldKey, 
       backgroundColor: const Color(0xFFF5F5F5),
+      drawer: const MenuDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.5,
@@ -53,7 +56,9 @@ class _HomePageState extends State<HomePage> {
             ),
             child: IconButton(
               icon: const Icon(Icons.menu, color: Colors.black, size: 24),
-              onPressed: () {},
+              onPressed: () {
+                _scaffoldKey.currentState?.openDrawer(); 
+              },
               padding: EdgeInsets.zero,
             ),
           ),
@@ -130,107 +135,105 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
- Widget _buildSeamlessRideCard() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    child: Container(
-      height: 150,
-      padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFE8D0),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: const Color(0xFFE5D4C1),
-          width: 1,
+  Widget _buildSeamlessRideCard() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Container(
+        height: 150,
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFE8D0),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: const Color(0xFFE5D4C1),
+            width: 1,
+          ),
         ),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text content
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Are you ready for a',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFF333333),
-                        fontWeight: FontWeight.w400,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Are you ready for a',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xFF333333),
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 1),
-                    Text(
-                      'seamless ride?',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        letterSpacing: -0.2,
+                      SizedBox(height: 1),
+                      Text(
+                        'seamless ride?',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          letterSpacing: -0.2,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      "Effortless & smooth ride.",
-                      style: TextStyle(
-                        fontSize: 9,
-                        color: Color(0xFF666666),
+                      SizedBox(height: 4),
+                      Text(
+                        "Effortless & smooth ride.",
+                        style: TextStyle(
+                          fontSize: 9,
+                          color: Color(0xFF666666),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                SizedBox(
-                  width: 105,
-                  height: 32,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFCC9966),
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+                    ],
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    width: 105,
+                    height: 32,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFCC9966),
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        elevation: 0,
                       ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Ride with GO',
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w600,
+                      child: const Text(
+                        'Ride with GO',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          
-          Container(
-            width: 180,
-            height: 150,
-            alignment: Alignment.bottomRight, 
-            child: Transform(
-              alignment: Alignment.bottomCenter, 
-              transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
-              child: Image.asset(
-                'assets/images/scooter_ride.png',
-                height: 200, 
-                width: 200,
-                fit: BoxFit.contain,
+                ],
               ),
             ),
-          ),
-        ],
+            Container(
+              width: 180,
+              height: 150,
+              alignment: Alignment.bottomRight,
+              child: Transform(
+                alignment: Alignment.bottomCenter,
+                transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+                child: Image.asset(
+                  'assets/images/scooter_ride.png',
+                  height: 200,
+                  width: 200,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   Widget _buildCouponSection() {
     return Padding(
@@ -251,7 +254,6 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Icon
             Container(
               width: 40,
               height: 40,
@@ -261,7 +263,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(width: 12),
-            // Text content
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -358,15 +359,15 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildRideCard(dynamic ride) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12), // Reduced from 14
-      padding: const EdgeInsets.all(14), // Reduced from 16
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(14), // Reduced from 16
+        borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 8, // Reduced from 10
+            blurRadius: 8,
             offset: const Offset(0, 2),
           ),
         ],
@@ -374,98 +375,91 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Icon container - REDUCED SIZE
           Container(
-            width: 42, 
-            height: 42, 
+            width: 42,
+            height: 42,
             decoration: BoxDecoration(
               color: const Color(0xFFE3F2FD),
-              borderRadius: BorderRadius.circular(20), 
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
               child: Image.asset(
                 'assets/images/Bike-Raide.png',
-                width: 24, 
-                height: 24, 
+                width: 24,
+                height: 24,
                 fit: BoxFit.contain,
               ),
             ),
           ),
-          const SizedBox(width: 10), 
-          
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               
                 Row(
                   children: [
                     const Text(
                       'IIT Madras C....',
                       style: TextStyle(
-                        fontSize: 13, 
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(width: 4), 
+                    const SizedBox(width: 4),
                     const Icon(
                       Icons.arrow_forward,
-                      size: 13, 
+                      size: 13,
                       color: Color(0xFF999999),
                     ),
-                    const SizedBox(width: 4), 
+                    const SizedBox(width: 4),
                     const Text(
                       'Airports Authority ....',
                       style: TextStyle(
-                        fontSize: 15, // Reduced from 14
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4), // Reduced from 6
-                // Date and time - REDUCED FONT SIZE
+                const SizedBox(height: 4),
                 const Text(
                   '23 Apr 2024 - 12:08pm',
                   style: TextStyle(
-                    fontSize: 12, // Reduced from 12
+                    fontSize: 12,
                     color: Color(0xFF999999),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 2), // Kept same
-                // Price - REDUCED FONT SIZE
+                const SizedBox(height: 2),
                 const Text(
                   '₹ 190.0',
                   style: TextStyle(
-                    fontSize: 12, 
+                    fontSize: 12,
                     color: Color(0xFF999999),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const SizedBox(height: 4), 
-                
+                const SizedBox(height: 4),
                 Row(
                   children: [
-                    
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 5, 
-                          height: 5, 
+                          width: 5,
+                          height: 5,
                           decoration: const BoxDecoration(
                             color: Color(0xFF4CAF50),
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 4), // Reduced from 6
+                        const SizedBox(width: 4),
                         const Text(
                           'Complete',
                           style: TextStyle(
-                            fontSize: 13, // Reduced from 12
+                            fontSize: 13,
                             color: Color(0xFF4CAF50),
                             fontWeight: FontWeight.w600,
                           ),
@@ -473,18 +467,17 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     const Spacer(),
-                   
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFFF9500),
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 16, // Reduced from 20
-                          vertical: 8, // Reduced from 10
+                          horizontal: 16,
+                          vertical: 8,
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6), // Reduced from 8
+                          borderRadius: BorderRadius.circular(6),
                         ),
                         elevation: 0,
                         minimumSize: Size.zero,
@@ -492,7 +485,7 @@ class _HomePageState extends State<HomePage> {
                       child: const Text(
                         'Book Again',
                         style: TextStyle(
-                          fontSize: 12, // Reduced from 13
+                          fontSize: 12,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.1,
                         ),

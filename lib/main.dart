@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           ),
           iconTheme: IconThemeData(color: Colors.black),
         ),
-        fontFamily: 'Inter', // Use Inter font for better matching
+        fontFamily: 'Inter', 
         useMaterial3: true,
       ),
       home: const HomePage(),
