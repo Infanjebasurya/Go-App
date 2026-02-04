@@ -26,3 +26,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/Menus/
+    - assets/images/coins/  
+    - assets/images/Settings/
+    - assets/images/helpand-support/
+

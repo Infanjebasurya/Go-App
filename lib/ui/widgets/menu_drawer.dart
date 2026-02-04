@@ -1,15 +1,16 @@
-// lib/widgets/menu_drawer.dart
 import 'package:flutter/material.dart';
-
-// Import the ProfileScreen (make sure the path is correct)
 import '../profile/profile_screen.dart';
+import '../Menus/Coin/coin_page.dart';
+import '../Menus/settings/settings_page.dart'; 
+import '../Menus/help_support/help_support_page.dart'; 
+import '../Menus/claims/claims_page.dart'; 
 
 class MenuDrawer extends StatelessWidget {
-  final String? gender; 
+  final String? gender;
   final String? userName;
   final String? phoneNumber;
   final double? rating;
-  
+
   const MenuDrawer({
     super.key,
     this.gender,
@@ -48,8 +49,8 @@ class MenuDrawer extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFFFFAA2B), 
-            Color(0xFFFFC46B), 
+            Color(0xFFFFAA2B),
+            Color(0xFFFFC46B),
           ],
           stops: [0.0, 1.0],
         ),
@@ -62,7 +63,6 @@ class MenuDrawer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // Close Button
               GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Container(
@@ -88,9 +88,9 @@ class MenuDrawer extends StatelessWidget {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 20),
-          
+
           // Profile Section
           Row(
             children: [
@@ -122,7 +122,7 @@ class MenuDrawer extends StatelessWidget {
                     bottom: 0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pop(context); // Close drawer
+                        Navigator.pop(context); 
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -154,9 +154,7 @@ class MenuDrawer extends StatelessWidget {
                   ),
                 ],
               ),
-              
               const SizedBox(width: 16),
-              
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,7 +195,7 @@ class MenuDrawer extends StatelessWidget {
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: Color(0xFFE0E0E0), 
+            color: Color(0xFFE0E0E0),
             width: 1.0,
           ),
         ),
@@ -211,7 +209,7 @@ class MenuDrawer extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            '${rating?.toStringAsFixed(0) ?? "5"}',
+            rating?.toStringAsFixed(0) ?? "5",
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -237,7 +235,7 @@ class MenuDrawer extends StatelessWidget {
       String imagePath = gender?.toLowerCase() == 'female'
           ? 'assets/images/profile_female.png'
           : 'assets/images/profile_male.png';
-      
+
       return Image.asset(
         imagePath,
         fit: BoxFit.cover,
@@ -253,7 +251,7 @@ class MenuDrawer extends StatelessWidget {
         },
       );
     }
-    
+
     return Container(
       color: const Color(0xFF2C2C2C),
       child: const Icon(
@@ -276,7 +274,7 @@ class MenuDrawer extends StatelessWidget {
             iconPath: 'assets/images/Menus/my_rides_icon.png',
             fallbackIcon: Icons.directions_bike,
             title: 'My Rides',
-            iconBgColor: const Color(0xFFE8EAFC), 
+            iconBgColor: const Color(0xFFE8EAFC),
             iconColor: const Color(0xFF5B67CA),
             context: context,
           ),
@@ -284,7 +282,7 @@ class MenuDrawer extends StatelessWidget {
             iconPath: 'assets/images/Menus/saved_location_icon.png',
             fallbackIcon: Icons.location_on,
             title: 'Saved Location',
-            iconBgColor: const Color(0xFFFDE8E8), 
+            iconBgColor: const Color(0xFFFDE8E8),
             iconColor: const Color(0xFFE85C5C),
             context: context,
           ),
@@ -292,7 +290,7 @@ class MenuDrawer extends StatelessWidget {
             iconPath: 'assets/images/Menus/rewards_icon.png',
             fallbackIcon: Icons.card_giftcard,
             title: 'Rewards',
-            iconBgColor: const Color(0xFFFFF4E0), 
+            iconBgColor: const Color(0xFFFFF4E0),
             iconColor: const Color(0xFFFFA726),
             context: context,
           ),
@@ -300,7 +298,7 @@ class MenuDrawer extends StatelessWidget {
             iconPath: 'assets/images/Menus/payment_icon.png',
             fallbackIcon: Icons.payment,
             title: 'Payment',
-            iconBgColor: const Color(0xFFE0F7FA), 
+            iconBgColor: const Color(0xFFE0F7FA),
             iconColor: const Color(0xFF00BCD4),
             context: context,
           ),
@@ -308,47 +306,85 @@ class MenuDrawer extends StatelessWidget {
             iconPath: 'assets/images/Menus/refer_earn_icon.png',
             fallbackIcon: Icons.people,
             title: 'Refer and Earn',
-            iconBgColor: const Color(0xFFE8F4FC), 
+            iconBgColor: const Color(0xFFE8F4FC),
             iconColor: const Color(0xFF2196F3),
             context: context,
           ),
+         
           _buildMenuItem(
             iconPath: 'assets/images/Menus/coins_icon.png',
             fallbackIcon: Icons.monetization_on,
             title: 'Coins',
-            iconBgColor: const Color(0xFFFFF9E6), 
+            iconBgColor: const Color(0xFFFFF9E6),
             iconColor: const Color(0xFFFFB300),
             context: context,
+            onTap: () {
+              Navigator.pop(context); 
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CoinPage(),
+                ),
+              );
+            },
           ),
+    
           _buildMenuItem(
             iconPath: 'assets/images/Menus/settings_icon.png',
             fallbackIcon: Icons.settings,
             title: 'Settings',
-            iconBgColor: const Color(0xFFE8F8F0), 
+            iconBgColor: const Color(0xFFE8F8F0),
             iconColor: const Color(0xFF4CAF50),
             context: context,
+            onTap: () {
+              Navigator.pop(context); 
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
           ),
           _buildMenuItem(
             iconPath: 'assets/images/Menus/help_support_icon.png',
             fallbackIcon: Icons.headset_mic,
             title: 'Help & support',
-            iconBgColor: const Color(0xFFFFF4E0), 
+            iconBgColor: const Color(0xFFFFF4E0),
             iconColor: const Color(0xFFFF9800),
             context: context,
+            onTap: () {
+              Navigator.pop(context); 
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HelpSupportPage(),
+                ),
+              );
+            },
           ),
-          _buildMenuItem(
-            iconPath: 'assets/images/Menus/claims_icon.png',
-            fallbackIcon: Icons.favorite,
-            title: 'Claims',
-            iconBgColor: const Color(0xFFFCE8F0), 
-            iconColor: const Color(0xFFE91E63),
-            context: context,
-          ),
-        ],
-      ),
-    );
-  }
-
+                 _buildMenuItem(
+          iconPath: 'assets/images/Menus/claims_icon.png',
+          fallbackIcon: Icons.favorite,
+          title: 'Claims',
+          iconBgColor: const Color(0xFFFCE8F0),
+          iconColor: const Color(0xFFE91E63),
+          context: context,
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ClaimsPage(),
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+}
+  
   Widget _buildMenuItem({
     required String iconPath,
     required IconData fallbackIcon,
@@ -356,11 +392,14 @@ class MenuDrawer extends StatelessWidget {
     required Color iconBgColor,
     required Color iconColor,
     required BuildContext context,
+    VoidCallback? onTap,
   }) {
     return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-      },
+      onTap: onTap ??
+          () {
+   
+            Navigator.pop(context);
+          },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
@@ -370,7 +409,7 @@ class MenuDrawer extends StatelessWidget {
               height: 44,
               decoration: BoxDecoration(
                 color: iconBgColor,
-                borderRadius: BorderRadius.circular(22), 
+                borderRadius: BorderRadius.circular(22),
                 boxShadow: [
                   BoxShadow(
                     color: iconColor.withOpacity(0.15),
@@ -395,9 +434,7 @@ class MenuDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            
             const SizedBox(width: 18),
-            
             Expanded(
               child: Text(
                 title,
