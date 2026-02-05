@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import './bloc/ride_bloc.dart';
+// import './ui/chat/chat_page.dart'; 
+// import './ui/chat/call_page.dart';
 import './ui/home_page.dart';
+
 
 void main() {
   runApp(
@@ -34,9 +37,12 @@ class MyApp extends StatelessWidget {
           ),
           iconTheme: IconThemeData(color: Colors.black),
         ),
-        fontFamily: 'Inter', 
+        fontFamily: 'Inter',
         useMaterial3: true,
       ),
+      // home: const ChatPage(),
+      // home: const CallPage(), 
+
       home: const HomePage(),
     );
   }

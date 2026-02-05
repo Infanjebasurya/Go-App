@@ -415,7 +415,7 @@ class _CoinPageState extends State<CoinPage> {
                   _alwaysUseCoins = value;
                 });
               },
-              activeColor: const Color(0xFFFFAA2B),
+              activeThumbColor: const Color(0xFFFFAA2B),
               activeTrackColor: const Color(0xFFFFE0B2),
               inactiveThumbColor: const Color(0xFFF5F5F5),
               inactiveTrackColor: const Color(0xFFE0E0E0),

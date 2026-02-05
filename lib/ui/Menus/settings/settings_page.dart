@@ -133,7 +133,7 @@ class SettingsPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16), 
             child: Row(
               children: [
-                Container(
+                SizedBox(
                   width: 36, 
                   height: 36, 
                   child: Center(
