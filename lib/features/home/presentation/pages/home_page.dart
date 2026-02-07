@@ -265,7 +265,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Icon
-            Container(
+            SizedBox(
               width: 40,
               height: 40,
               child: Image.asset(
