@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'reward_page.dart';
 
 class RideCompletionScreen extends StatefulWidget {
-  const RideCompletionScreen({Key? key}) : super(key: key);
+  const RideCompletionScreen({super.key});
 
   @override
   State<RideCompletionScreen> createState() => _RideCompletionScreenState();

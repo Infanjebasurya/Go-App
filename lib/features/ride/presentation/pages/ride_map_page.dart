@@ -37,7 +37,7 @@ class _RideMapScreenState extends State<RideMapScreen> {
 
   Timer? _driverTimer;
   LatLng _driverLocation = const LatLng(12.9229, 80.1275);
-  bool _isRideBooked = false;
+  final bool _isRideBooked = false;
   bool isEnabled = true;
 
   @override

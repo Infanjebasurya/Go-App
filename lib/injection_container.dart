@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 
-import 'features/home/presentation/bloc/home_bloc.dart';
 import 'features/auth/presentation/bloc/registration_bloc.dart';
 import 'features/auth/presentation/bloc/otp_bloc.dart';
 import 'features/auth/data/repositories/otp_repository.dart';

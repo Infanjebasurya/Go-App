@@ -212,8 +212,9 @@ class _RegistrationView extends StatelessWidget {
                             previous.referralCode != current.referralCode ||
                             previous.isReferralVerified != current.isReferralVerified,
                         builder: (context, state) {
-                          if (!state.isReferralInputVisible)
+                          if (!state.isReferralInputVisible) {
                             return const SizedBox.shrink();
+                          }
 
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

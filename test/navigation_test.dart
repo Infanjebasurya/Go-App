@@ -6,7 +6,6 @@ import 'package:sybrox_go_app/features/auth/presentation/pages/login_page.dart';
 import 'package:sybrox_go_app/features/auth/presentation/pages/registration_page.dart';
 import 'package:sybrox_go_app/features/auth/data/repositories/otp_repository.dart';
 import 'package:sybrox_go_app/features/auth/presentation/bloc/otp_bloc.dart';
-import 'package:sybrox_go_app/injection_container.dart' as di;
 
 class MockOtpRepository extends OtpRepository {
   @override

@@ -196,7 +196,7 @@ class MenuDrawer extends StatelessWidget {
           const Icon(Icons.star, size: 24, color: Color(0xFFFFAA2B)),
           const SizedBox(width: 8),
           Text(
-            '${rating?.toStringAsFixed(0) ?? "5"}',
+            rating?.toStringAsFixed(0) ?? "5",
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
