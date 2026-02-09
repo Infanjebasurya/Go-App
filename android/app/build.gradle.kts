@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -7,7 +7,7 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Load keystore properties
+// Load optional release keystore properties from android/key.properties
 val keystoreProperties = Properties().apply {
     val keystorePropertiesFile = rootProject.file("key.properties")
     if (keystorePropertiesFile.exists()) {
@@ -17,11 +17,13 @@ val keystoreProperties = Properties().apply {
     }
 }
 
+val hasReleaseKeystore = listOf("keyAlias", "keyPassword", "storeFile", "storePassword")
+    .all { key -> !keystoreProperties.getProperty(key).isNullOrBlank() }
+
 android {
     namespace = "com.example.flutter_application_1"
-       compileSdk = flutter.compileSdkVersion
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -35,17 +37,19 @@ android {
     defaultConfig {
         applicationId = "com.example.flutter_application_1"
         minSdk = flutter.minSdkVersion
-         targetSdk = flutter.targetSdkVersion
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
     signingConfigs {
-        create("release") {
-             keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = file(keystoreProperties["storeFile"] as String)
-            storePassword = keystoreProperties["storePassword"] as String
+        if (hasReleaseKeystore) {
+            create("release") {
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+            }
         }
     }
 
@@ -53,7 +57,16 @@ android {
         getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
         }
-      
+
+        getByName("release") {
+            // Use a real release keystore when provided, otherwise fall back to debug
+            // signing so the APK can still be installed on test devices.
+            signingConfig = if (hasReleaseKeystore) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+        }
     }
 }
 
