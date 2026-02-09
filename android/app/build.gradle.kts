@@ -8,7 +8,6 @@ plugins {
 }
 
 // Load keystore properties
-val keystorePropertiesFile = rootProject.file("key.properties")
 val keystoreProperties = Properties().apply {
     val keystorePropertiesFile = rootProject.file("key.properties")
     if (keystorePropertiesFile.exists()) {
@@ -17,11 +16,9 @@ val keystoreProperties = Properties().apply {
         }
     }
 }
-val hasReleaseKeystore = keystorePropertiesFile.exists()
 
 android {
     namespace = "com.example.flutter_application_1"
-    namespace = "com.sybrox.goapp"
        compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -37,7 +34,6 @@ android {
 
     defaultConfig {
         applicationId = "com.example.flutter_application_1"
-        applicationId = "com.sybrox.goapp"
         minSdk = flutter.minSdkVersion
          targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -50,29 +46,14 @@ android {
             keyPassword = keystoreProperties["keyPassword"] as String
             storeFile = file(keystoreProperties["storeFile"] as String)
             storePassword = keystoreProperties["storePassword"] as String
-            if (hasReleaseKeystore) {
-                keyAlias = keystoreProperties["keyAlias"] as String
-                keyPassword = keystoreProperties["keyPassword"] as String
-                storeFile = file(keystoreProperties["storeFile"] as String)
-                storePassword = keystoreProperties["storePassword"] as String
-            }
         }
     }
 
     buildTypes {
         getByName("debug") {
-            applicationIdSuffix = ".debug"
             signingConfig = signingConfigs.getByName("debug")
         }
       
-
-        getByName("release") {
-            signingConfig = if (hasReleaseKeystore) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
-            }
-        }
     }
 }
 
